@@ -1,0 +1,77 @@
+[
+    {
+        "question": "What is a substance formed by the chemical reaction between two or more elements called?",
+        "correct_answer": "Compound",
+        "incorrect_answers": ["Molecule", "Alloy", "Metalloid"]
+    },
+    {
+        "question": "What is the smallest particle of an element that can take part in a chemical reaction called?",
+        "correct_answer": "Atom",
+        "incorrect_answers": ["Molecule", "Element", "Orbit"]
+    },
+    {
+        "question": "What is the gravitational force of the Earth?",
+        "correct_answer": "9.8 m/s²",
+        "incorrect_answers": ["8.5 m/s²", "10.2 m/s²", "7.8 m/s²"]
+    },
+    {
+        "question": "How many bones are there in the human body?",
+        "correct_answer": "206",
+        "incorrect_answers": ["195", "210", "220"]
+    },
+    {
+        "question": "How is the energy of the sun produced?",
+        "correct_answer": "Nuclear fusion",
+        "incorrect_answers": ["Nuclear fission", "Chemical reaction", "Electromagnetic emission"]
+    },
+    {
+        "question": "Which is the largest organ in the human body?",
+        "correct_answer": "Skin",
+        "incorrect_answers": ["Kidney", "Lungs", "Heart"]
+    },
+    {
+        "question": "How long does it take for light to travel from the sun to the earth?",
+        "correct_answer": "8 minutes",
+        "incorrect_answers": ["6 minutes", "10 minutes", "12 minutes"]
+    },
+    {
+        "question": "What is the chemical formula of water?",
+        "correct_answer": "H₂O",
+        "incorrect_answers": ["CO₂", "O₂", "H₂"]
+    },
+    {
+        "question": "Which element has the chemical symbol Fe?",
+        "correct_answer": "Iron",
+        "incorrect_answers": ["Copper", "Gold", "Silver"]
+    },
+    {
+        "question": "Which is the largest planet in the solar system?",
+        "correct_answer": "Jupiter",
+        "incorrect_answers": ["Saturn", "Earth", "Mars"]
+    },
+    {
+        "question": "What is the main function of the human brain?",
+        "correct_answer": "Control and coordination of the whole body",
+        "incorrect_answers": ["Blood circulation", "Respiration", "Digestion"]
+    },
+    {
+        "question": "What is the instrument used to measure electric current called?",
+        "correct_answer": "Ammeter",
+        "incorrect_answers": ["Voltmeter", "Ohmmeter", "Multimeter"]
+    },
+    {
+        "question": "Which organ of the human body produces insulin?",
+        "correct_answer": "Pancreas",
+        "incorrect_answers": ["Kidney", "Liver", "Heart"]
+    },
+    {
+        "question": "Which organ of the human body is affected by Alzheimer's disease?",
+        "correct_answer": "Brain",
+        "incorrect_answers": ["Kidney", "Lungs", "Bones"]
+    },
+    {
+        "question": "Which element has the chemical symbol O?",
+        "correct_answer": "Oxygen",
+        "incorrect_answers": ["Hydrogen", "Nitrogen", "Carbon"]
+    }
+]

@@ -1,0 +1,72 @@
+[
+    {
+        "question": "Which is the largest river in Nepal?",
+        "correct_answer": "Koshi",
+        "incorrect_answers": ["Gandaki", "Karnali", "Mahakali"]
+    },
+    {
+        "question": "In which province is Mount Everest located?",
+        "correct_answer": "Province No. 1",
+        "incorrect_answers": ["Bagmati Province", "Gandaki Province", "Karnali Province"]
+    },
+    {
+        "question": "Which is the smallest district of Nepal?",
+        "correct_answer": "Bhaktapur",
+        "incorrect_answers": ["Lalitpur", "Kathmandu", "Parbat"]
+    },
+    {
+        "question": "In which district is Rara Lake located?",
+        "correct_answer": "Mugu",
+        "incorrect_answers": ["Humla", "Jumla", "Dolpa"]
+    },
+    {
+        "question": "In which city is Phewa Lake located?",
+        "correct_answer": "Pokhara",
+        "incorrect_answers": ["Kathmandu", "Biratnagar", "Janakpur"]
+    },
+    {
+        "question": "Which is the district headquarters at the highest altitude in Nepal?",
+        "correct_answer": "Simikot",
+        "incorrect_answers": ["Jomsom", "Chame", "Dunai"]
+    },
+    {
+        "question": "What is the height of Mount Everest?",
+        "correct_answer": "8848.86 meters",
+        "incorrect_answers": ["8848 meters", "8849 meters", "8850 meters"]
+    },
+    {
+        "question": "Which river of Nepal is also known as 'Uttargaya'?",
+        "correct_answer": "Trishuli",
+        "incorrect_answers": ["Kaligandaki", "Seti", "Sunkoshi"]
+    },
+    {
+        "question": "Which is the largest national park in Nepal?",
+        "correct_answer": "She-Phoksundo National Park",
+        "incorrect_answers": ["Sagarmatha National Park", "Chitwan National Park", "Langtang National Park"]
+    },
+    {
+        "question": "On the bank of which river is the Pashupatinath temple located?",
+        "correct_answer": "Bagmati",
+        "incorrect_answers": ["Bishnumati", "Manohara", "Rudramati"]
+    },
+    {
+        "question": "Which is the largest lake in Nepal?",
+        "correct_answer": "Rara Lake",
+        "incorrect_answers": ["Phewa Lake", "Gosaikunda", "Tilicho Lake"]
+    },
+    {
+        "question": "Which place in Nepal is known as the 'city of temples'?",
+        "correct_answer": "Kathmandu",
+        "incorrect_answers": ["Bhaktapur", "Lalitpur", "Janakpur"]
+    },
+    {
+        "question": "What is Chitwan National Park famous for?",
+        "correct_answer": "One-horned rhinoceros",
+        "incorrect_answers": ["Bengal tiger", "Elephant", "Gharial crocodile"]
+    },
+    {
+        "question": "Which is the longest river in Nepal?",
+        "correct_answer": "Karnali",
+        "incorrect_answers": ["Koshi", "Gandaki", "Mahakali"]
+    }
+]

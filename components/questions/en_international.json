@@ -1,0 +1,67 @@
+[
+    {
+        "question": "What is the most valuable currency in the world?",
+        "correct_answer": "Kuwaiti Dinar",
+        "incorrect_answers": ["Dollar", "Pound Sterling", "Saudi Riyal"]
+    },
+    {
+        "question": "When did the ATR 42-300 turboprop plane crash in Papua province of Indonesia?",
+        "correct_answer": "August 16, 2015",
+        "incorrect_answers": ["August 15, 2015", "July 15, 2016", "July 5, 2015"]
+    },
+    {
+        "question": "On the bank of which river is Kagbeni located?",
+        "correct_answer": "Kaligandaki",
+        "incorrect_answers": ["Marshyangdi", "Budhigandaki", "Trishuli"]
+    },
+    {
+        "question": "Which is the highest mountain in the world?",
+        "correct_answer": "Mount Everest",
+        "incorrect_answers": ["K2", "Kangchenjunga", "Lhotse"]
+    },
+    {
+        "question": "Which is the largest ocean in the world?",
+        "correct_answer": "Pacific Ocean",
+        "incorrect_answers": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean"]
+    },
+    {
+        "question": "Which is the largest country in the world by area?",
+        "correct_answer": "Russia",
+        "incorrect_answers": ["Canada", "China", "United States"]
+    },
+    {
+        "question": "Which is the most populous country in the world?",
+        "correct_answer": "China",
+        "incorrect_answers": ["India", "United States", "Indonesia"]
+    },
+    {
+        "question": "Which is the longest river in the world?",
+        "correct_answer": "Nile River",
+        "incorrect_answers": ["Amazon River", "Yangtze River", "Mississippi River"]
+    },
+    {
+        "question": "Which is the largest desert in the world?",
+        "correct_answer": "Antarctic Desert",
+        "incorrect_answers": ["Sahara Desert", "Arctic Desert", "Arabian Desert"]
+    },
+    {
+        "question": "Which is the most populous city in the world?",
+        "correct_answer": "Tokyo",
+        "incorrect_answers": ["Delhi", "Shanghai", "Sao Paulo"]
+    },
+    {
+        "question": "Where is the headquarters of the United Nations located?",
+        "correct_answer": "New York City",
+        "incorrect_answers": ["Geneva", "Vienna", "Paris"]
+    },
+    {
+        "question": "Where is the headquarters of the World Health Organization (WHO)?",
+        "correct_answer": "Geneva",
+        "incorrect_answers": ["New York", "London", "Berlin"]
+    },
+    {
+        "question": "Where is the headquarters of the International Monetary Fund (IMF)?",
+        "correct_answer": "Washington, D.C.",
+        "incorrect_answers": ["New York", "London", "Frankfurt"]
+    }
+]

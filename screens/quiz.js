@@ -1,14 +1,19 @@
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, SafeAreaView, Animated } from 'react-native';
-import React, { useEffect, useState, useRef } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState, useRef, useEffect } from 'react';
 import Option from '../components/option';
 import geographyData from '../components/questions/geography.json';
 import historyData from '../components/questions/history.json';
 import scienceData from '../components/questions/science.json';
 import internationalData from '../components/questions/international.json';
+import politicsData from '../components/questions/politics.json';
+import enGeographyData from '../components/questions/en_geography.json';
+import enHistoryData from '../components/questions/en_history.json';
+import enScienceData from '../components/questions/en_science.json';
+import enInternationalData from '../components/questions/en_international.json';
+import enPoliticsData from '../components/questions/en_politics.json';
 
 const Quiz = ({ route, navigation }) => {
-    const { category } = route.params;
+    const { category, language } = route.params;
     const [questions, setQuestions] = useState([]);
     const [number, setNumber] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -35,26 +40,28 @@ const Quiz = ({ route, navigation }) => {
         }).start();
     };
 
-    const getQuizFromLocal = async () => {
-        let questionsData;
-        switch (category) {
-            case 'Geography':
-                questionsData = geographyData;
-                break;
-            case 'History':
-                questionsData = historyData;
-                break;
-            case 'Science':
-                questionsData = scienceData;
-                break;
-            case 'International':
-                questionsData = internationalData;
-                break;
-            default:
-                questionsData = [];
-        }
+    const getQuizFromLocal = () => {
+        const nepaliQuestions = {
+            Geography: geographyData,
+            History: historyData,
+            Science: scienceData,
+            International: internationalData,
+            Politics: politicsData,
+        };
 
-        await AsyncStorage.setItem(category, JSON.stringify(questionsData));
+        const englishQuestions = {
+            Geography: enGeographyData,
+            History: enHistoryData,
+            Science: enScienceData,
+            International: enInternationalData,
+            Politics: enPoliticsData,
+        };
+
+        const questionsData =
+            language === 'english'
+                ? englishQuestions[category]
+                : nepaliQuestions[category];
+
         setQuestions(questionsData);
         setLoading(false);
         shuffleOptions(questionsData[0]);
@@ -66,7 +73,7 @@ const Quiz = ({ route, navigation }) => {
         setShuffledOptions(options);
     }
 
-    const handleNextPress = () => {
+    const handleNext = () => {
         if (number < questions.length - 1) {
             fadeOut();
             setTimeout(() => {
@@ -87,20 +94,6 @@ const Quiz = ({ route, navigation }) => {
         }
     }
 
-    const handleSkipPress = () => {
-        if (number < questions.length - 1) {
-            fadeOut();
-            setTimeout(() => {
-                setNumber(number + 1);
-                setSelectedOption(null);
-                setShowCheckAnswer(false);
-                setShowCorrectAnswer(false);
-                shuffleOptions(questions[number + 1]);
-                fadeIn();
-            }, 200);
-        }
-    }
-
     const handleResultsPress = () => {
         navigation.navigate('Result', {
             score,
@@ -110,7 +103,7 @@ const Quiz = ({ route, navigation }) => {
     }
 
     useEffect(() => {
-        getQuizFromLocal(); // Changed from getQuiz() to directly calling getQuizFromLocal()
+        getQuizFromLocal();
     }, []);
 
     if (loading) {
@@ -165,7 +158,7 @@ const Quiz = ({ route, navigation }) => {
             <View style={styles.buttonView}>
                 <TouchableOpacity
                     style={[styles.button, styles.skip]}
-                    onPress={handleSkipPress}
+                    onPress={handleNext}
                 >
                     <Text style={styles.buttonText}>Skip</Text>
                 </TouchableOpacity>
@@ -183,7 +176,7 @@ const Quiz = ({ route, navigation }) => {
                     number < questions.length - 1 ? (
                         <TouchableOpacity
                             style={[styles.button, styles.continue]}
-                            onPress={handleNextPress}
+                            onPress={handleNext}
                         >
                             <Text style={styles.buttonText}>Next</Text>
                         </TouchableOpacity>
@@ -206,36 +199,33 @@ export default Quiz;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8fafc',
+        backgroundColor: '#1e1e1e', // Dark theme
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 16,
-        backgroundColor: '#fff',
-        borderBottomWidth: 1,
-        borderBottomColor: '#e2e8f0',
+        padding: 20,
+        backgroundColor: '#2c2c2c',
     },
     categoryText: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
-        color: '#1e293b',
+        color: '#fff',
     },
     scoreText: {
-        fontSize: 16,
-        fontWeight: '600',
-        color: '#6366f1',
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#f9a826', // Accent color
     },
     progress: {
-        height: 4,
-        backgroundColor: '#e2e8f0',
-        width: '100%',
+        height: 8,
+        backgroundColor: '#444',
     },
     progressBar: {
         height: '100%',
-        backgroundColor: '#6366f1',
-        borderRadius: 2,
+        backgroundColor: '#f9a826',
+        borderRadius: 4,
     },
     mainContent: {
         flex: 1,
@@ -243,65 +233,68 @@ const styles = StyleSheet.create({
     },
     questionView: {
         marginVertical: 20,
+        padding: 20,
+        backgroundColor: '#2c2c2c',
+        borderRadius: 15,
     },
     questionNumber: {
-        fontSize: 14,
-        color: '#64748b',
-        marginBottom: 8,
+        fontSize: 16,
+        color: '#aaa',
+        marginBottom: 10,
     },
     question: {
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: 'bold',
-        color: '#1e293b',
-        lineHeight: 32,
+        color: '#fff',
+        lineHeight: 30,
     },
     optionView: {
-        width: '100%',
         marginTop: 20,
     },
     buttonView: {
         padding: 20,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        backgroundColor: '#fff',
-        borderTopWidth: 1,
-        borderTopColor: '#e2e8f0',
+        justifyContent: 'space-around',
+        backgroundColor: '#2c2c2c',
     },
     button: {
-        height: 48,
-        flex: 1,
-        borderRadius: 12,
+        height: 50,
+        paddingHorizontal: 20,
+        borderRadius: 25,
         justifyContent: 'center',
         alignItems: 'center',
-        marginHorizontal: 6,
-        elevation: 2,
+        elevation: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
     },
     skip: {
-        backgroundColor: '#ef4444',
+        backgroundColor: '#d32f2f',
     },
     checkAnswer: {
-        backgroundColor: '#f59e0b',
+        backgroundColor: '#f57c00',
     },
     continue: {
-        backgroundColor: '#10b981',
+        backgroundColor: '#388e3c',
     },
     results: {
-        backgroundColor: '#6366f1',
+        backgroundColor: '#1976d2',
     },
     buttonText: {
-        fontSize: 16,
-        fontWeight: '600',
+        fontSize: 18,
+        fontWeight: 'bold',
         color: '#fff',
     },
     loadingContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f8fafc',
+        backgroundColor: '#1e1e1e',
     },
     loadingText: {
-        marginTop: 12,
-        fontSize: 16,
-        color: '#64748b',
+        marginTop: 20,
+        fontSize: 18,
+        color: '#fff',
     },
 });

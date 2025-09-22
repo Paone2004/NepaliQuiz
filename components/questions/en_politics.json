@@ -1,0 +1,52 @@
+[
+    {
+        "question": "Who is the current Prime Minister of Nepal?",
+        "correct_answer": "Pushpa Kamal Dahal 'Prachanda'",
+        "incorrect_answers": ["Sher Bahadur Deuba", "KP Sharma Oli", "Madhav Kumar Nepal"]
+    },
+    {
+        "question": "Who is the current President of Nepal?",
+        "correct_answer": "Ram Chandra Paudel",
+        "incorrect_answers": ["Bidya Devi Bhandari", "Subas Chandra Nembang", "Ram Baran Yadav"]
+    },
+    {
+        "question": "When was the constitution of Nepal promulgated?",
+        "correct_answer": "September 20, 2015",
+        "incorrect_answers": ["September 18, 2015", "September 22, 2015", "September 24, 2015"]
+    },
+    {
+        "question": "How many provinces are there in Nepal?",
+        "correct_answer": "7",
+        "incorrect_answers": ["5", "6", "8"]
+    },
+    {
+        "question": "How many members are there in the National Assembly of Nepal?",
+        "correct_answer": "59",
+        "incorrect_answers": ["56", "60", "62"]
+    },
+    {
+        "question": "How often are the elections for the House of Representatives held?",
+        "correct_answer": "5 years",
+        "incorrect_answers": ["4 years", "6 years", "3 years"]
+    },
+    {
+        "question": "Who is the first President of Nepal?",
+        "correct_answer": "Ram Baran Yadav",
+        "incorrect_answers": ["Bidya Devi Bhandari", "Ram Chandra Paudel", "Subas Chandra Nembang"]
+    },
+    {
+        "question": "Who is the first female President of Nepal?",
+        "correct_answer": "Bidya Devi Bhandari",
+        "incorrect_answers": ["Ram Chandra Paudel", "Subas Chandra Nembang", "Ram Baran Yadav"]
+    },
+    {
+        "question": "Who is the first Prime Minister of Nepal?",
+        "correct_answer": "Bhimsen Thapa",
+        "incorrect_answers": ["Jang Bahadur Rana", "Matrika Prasad Koirala", "Bishweshwar Prasad Koirala"]
+    },
+    {
+        "question": "Who is the first female Prime Minister of Nepal?",
+        "correct_answer": "None",
+        "incorrect_answers": ["Shailaja Acharya", "Bidya Devi Bhandari", "Onsari Gharti Magar"]
+    }
+]

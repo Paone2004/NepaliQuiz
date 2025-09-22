@@ -1,41 +1,81 @@
 import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity, Animated, Easing } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Title from '../components/title';
-import Constants from 'expo-constants';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const Home = ({ navigation }) => {
-    const [scaleValue] = useState(new Animated.Value(1));
+    const scaleValue = useRef(new Animated.Value(1)).current;
+    const slideAnim = useRef(new Animated.Value(0)).current;
+    const fadeAnim = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
+        // Breathing animation for the logo
         Animated.loop(
             Animated.sequence([
                 Animated.timing(scaleValue, {
-                    toValue: 1.1,
-                    duration: 1000,
-                    easing: Easing.linear,
+                    toValue: 1.05,
+                    duration: 1500,
+                    easing: Easing.inOut(Easing.ease),
                     useNativeDriver: true,
                 }),
                 Animated.timing(scaleValue, {
                     toValue: 1,
-                    duration: 1000,
-                    easing: Easing.linear,
+                    duration: 1500,
+                    easing: Easing.inOut(Easing.ease),
                     useNativeDriver: true,
                 }),
             ])
         ).start();
+
+        // Slide-in animation for the image
+        Animated.timing(slideAnim, {
+            toValue: 1,
+            duration: 800,
+            easing: Easing.out(Easing.poly(4)),
+            useNativeDriver: true,
+        }).start();
+
+        // Fade-in animation for title and button
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 800,
+            delay: 400,
+            easing: Easing.out(Easing.ease),
+            useNativeDriver: true,
+        }).start();
     }, []);
 
+    const imageStyle = {
+        transform: [
+            { scale: scaleValue },
+            {
+                translateY: slideAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [-300, 0],
+                }),
+            },
+        ],
+        opacity: slideAnim,
+    };
+
+    const textContainerStyle = {
+        opacity: fadeAnim,
+    };
+
     return (
-        <LinearGradient colors={['#6A82FB', '#FC5C7D']} style={styles.container}>
+        <LinearGradient colors={['#1e3c72', '#2a5298']} style={styles.container}>
             <SafeAreaView style={styles.safeArea}>
-                <Title />
-                <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
+                <Animated.View style={textContainerStyle}>
+                    <Title />
+                </Animated.View>
+                <Animated.View style={imageStyle}>
                     <Image style={styles.image} source={require('../logo.png')} />
                 </Animated.View>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Menu')}>
-                    <Text style={styles.buttonText}>Start Quiz</Text>
-                </TouchableOpacity>
+                <Animated.View style={[styles.buttonContainer, textContainerStyle]}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Menu')}>
+                        <Text style={styles.buttonText}>Start Quiz</Text>
+                    </TouchableOpacity>
+                </Animated.View>
             </SafeAreaView>
         </LinearGradient>
     );
@@ -50,35 +90,38 @@ const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'space-around',
         padding: 20,
-        justifyContent: 'space-between',
     },
     image: {
-        height: 200,
-        width: 200,
-        borderRadius: 20,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 10 },
-        shadowOpacity: 0.3,
-        shadowRadius: 20,
+        height: 250,
+        width: 250,
+        borderRadius: 125,
+        borderWidth: 5,
+        borderColor: 'rgba(255, 255, 255, 0.2)',
     },
-    button: {
-        marginTop: 30,
-        height: 50,
+    buttonContainer: {
         width: '100%',
         alignItems: 'center',
+    },
+    button: {
+        height: 60,
+        width: '90%',
+        alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#4C3BCF',
-        borderRadius: 25,
+        backgroundColor: '#f9a826',
+        borderRadius: 30,
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 5 },
-        shadowOpacity: 0.3,
-        shadowRadius: 10,
-        elevation: 5,
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.4,
+        shadowRadius: 15,
+        elevation: 10,
     },
     buttonText: {
         fontSize: 24,
-        fontWeight: '600',
-        color: 'white',
+        fontWeight: 'bold',
+        color: '#fff',
+        textTransform: 'uppercase',
+        letterSpacing: 1.5,
     },
 });

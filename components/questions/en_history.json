@@ -1,0 +1,77 @@
+[
+    {
+        "question": "Which side did the then Prime Minister of Nepal, Chandra Shumsher, support in the First World War?",
+        "correct_answer": "British",
+        "incorrect_answers": ["America", "Germany", "India"]
+    },
+    {
+        "question": "Who is the king who started the unification of Nepal?",
+        "correct_answer": "King Prithvi Narayan Shah",
+        "incorrect_answers": ["King Tribhuvan", "King Mahendra", "King Janak"]
+    },
+    {
+        "question": "When was the first official form of the national flag of Nepal adopted?",
+        "correct_answer": "1962",
+        "incorrect_answers": ["1951", "1945", "1972"]
+    },
+    {
+        "question": "When was the first democratic election of Nepal held?",
+        "correct_answer": "1959",
+        "incorrect_answers": ["1957", "1954", "1951"]
+    },
+    {
+        "question": "When did the Nepalese Civil War start?",
+        "correct_answer": "1996",
+        "incorrect_answers": ["1990", "2001", "1994"]
+    },
+    {
+        "question": "Who is the first Prime Minister of Nepal?",
+        "correct_answer": "Bhimsen Thapa",
+        "incorrect_answers": ["Jang Bahadur Rana", "Chandra Shumsher", "Tribhuvan"]
+    },
+    {
+        "question": "In which year was the first battle of the unification of Nepal fought?",
+        "correct_answer": "1744",
+        "incorrect_answers": ["1768", "1779", "1786"]
+    },
+    {
+        "question": "Who is the first female Prime Minister of Nepal?",
+        "correct_answer": "None",
+        "incorrect_answers": ["Sushil Koirala", "Tulsi Giri", "Madhav Kumar Nepal"]
+    },
+    {
+        "question": "When was the first meeting of the Constituent Assembly of Nepal held?",
+        "correct_answer": "28th May 2008",
+        "incorrect_answers": ["14th April 2006", "20th October 2006", "13th December 2007"]
+    },
+    {
+        "question": "Who is the first President of Nepal?",
+        "correct_answer": "Ram Baran Yadav",
+        "incorrect_answers": ["Bidya Devi Bhandari", "Sushil Koirala", "Sher Bahadur Deuba"]
+    },
+    {
+        "question": "When did Nepal qualify to participate in the FIFA World Cup for the first time?",
+        "correct_answer": "Never",
+        "incorrect_answers": ["1994", "2002", "2018"]
+    },
+    {
+        "question": "With which country is the Kalapani region dispute related to the treaty of Nepal?",
+        "correct_answer": "India",
+        "incorrect_answers": ["China", "Bhutan", "Bangladesh"]
+    },
+    {
+        "question": "Which is the oldest temple in Nepal?",
+        "correct_answer": "Changu Narayan Temple",
+        "incorrect_answers": ["Pashupatinath Temple", "Swayambhunath Stupa", "Muktinath Temple"]
+    },
+    {
+        "question": "In which year did Nepal get membership of the United Nations?",
+        "correct_answer": "1955",
+        "incorrect_answers": ["1945", "1962", "1975"]
+    },
+    {
+        "question": "Which is the oldest university in Nepal?",
+        "correct_answer": "Tribhuvan University",
+        "incorrect_answers": ["Kathmandu University", "Pokhara University", "Purbanchal University"]
+    }
+]

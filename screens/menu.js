@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
     StyleSheet,
     Text,
@@ -12,12 +12,13 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
-import { MaterialIcons } from '@expo/vector-icons'; // For icons
+import { MaterialIcons } from '@expo/vector-icons';
 
 import GeographyImage from '../assets/images/Geography.jpg';
 import ScienceImage from '../assets/images/Science.jpg';
 import HistoryImage from '../assets/images/History.jpg';
 import InternationalImage from '../assets/images/International.jpg';
+import PoliticsImage from '../assets/images/Politics.jpg';
 
 const { width } = Dimensions.get('window');
 
@@ -25,30 +26,37 @@ const options = [
     {
         id: 1,
         title: 'Geography',
-        color: ['rgba(41, 128, 185, 0.7)', 'rgba(52, 152, 219, 0.3)'], // Dimmed colors
+        color: ['#4c669f', '#3b5998', '#192f6a'],
         description: 'Explore the world\'s landscapes and cultures',
         icon: 'public',
     },
     {
         id: 2,
         title: 'Science',
-        color: ['rgba(39, 174, 96, 0.7)', 'rgba(46, 204, 113, 0.3)'], // Dimmed colors
+        color: ['#2E7D32', '#4CAF50', '#81C784'],
         description: 'Discover scientific wonders and innovations',
         icon: 'science',
     },
     {
         id: 3,
         title: 'History',
-        color: ['rgba(243, 156, 18, 0.7)', 'rgba(211, 84, 0, 0.3)'], // Dimmed colors
+        color: ['#f5af19', '#f12711'],
         description: 'Journey through time and civilizations',
         icon: 'history',
     },
     {
         id: 4,
         title: 'International',
-        color: ['rgba(142, 68, 173, 0.7)', 'rgba(155, 89, 182, 0.3)'], // Dimmed colors
+        color: ['#8e2de2', '#4a00e0'],
         description: 'Explore global connections and diversity',
         icon: 'language',
+    },
+    {
+        id: 5,
+        title: 'Politics',
+        color: ['#d32f2f', '#c2185b', '#ad1457'],
+        description: 'Test your knowledge of politics',
+        icon: 'gavel',
     },
 ];
 
@@ -57,73 +65,79 @@ const images = {
     Science: ScienceImage,
     History: HistoryImage,
     International: InternationalImage,
+    Politics: PoliticsImage,
 };
 
-const Menu = ({ navigation }) => {
+const Menu = ({ route, navigation }) => {
+    const { language } = route.params;
     const scaleAnim = useRef(new Animated.Value(1)).current;
+    const slideAnims = useRef(options.map(() => new Animated.Value(0))).current;
+
+    useEffect(() => {
+        Animated.stagger(
+            150,
+            slideAnims.map(anim =>
+                Animated.spring(anim, {
+                    toValue: 1,
+                    friction: 5,
+                    tension: 40,
+                    useNativeDriver: true,
+                })
+            )
+        ).start();
+    }, []);
 
     const handleOptionPress = (option) => {
-        // Animation on press
-        Animated.sequence([
-            Animated.timing(scaleAnim, {
-                toValue: 0.95,
-                duration: 100,
-                easing: Easing.ease,
-                useNativeDriver: true,
-            }),
-            Animated.timing(scaleAnim, {
-                toValue: 1,
-                duration: 100,
-                easing: Easing.ease,
-                useNativeDriver: true,
-            }),
-        ]).start(() => {
-            navigation.navigate('Quiz', { category: option.title });
-        });
+        navigation.navigate('Quiz', { category: option.title, language });
     };
 
     return (
-        <LinearGradient
-            colors={['#f5f7fa', '#c3cfe2']}
-            style={styles.container}
-        >
-            {/* Fixed Header */}
+        <LinearGradient colors={['#0f2027', '#203a43', '#2c5364']} style={styles.container}>
             <View style={styles.headerContainer}>
-                <Text style={styles.headerText}>Choose Your Quiz Category</Text>
+                <Text style={styles.headerText}>Choose a Category</Text>
             </View>
 
-            {/* Scrollable Options */}
             <ScrollView
                 contentContainerStyle={styles.scrollContainer}
                 showsVerticalScrollIndicator={false}
             >
-                {options.map(option => (
-                    <TouchableOpacity
+                {options.map((option, index) => (
+                    <Animated.View
                         key={option.id}
-                        activeOpacity={0.7}
-                        onPress={() => handleOptionPress(option)}
+                        style={{
+                            transform: [
+                                {
+                                    translateY: slideAnims[index].interpolate({
+                                        inputRange: [0, 1],
+                                        outputRange: [150, 0],
+                                    }),
+                                },
+                            ],
+                            opacity: slideAnims[index],
+                        }}
                     >
-                        <Animated.View style={[styles.option, { transform: [{ scale: scaleAnim }] }]}>
+                        <TouchableOpacity
+                            activeOpacity={0.8}
+                            onPress={() => handleOptionPress(option)}
+                        >
                             <ImageBackground
                                 source={images[option.title]}
-                                style={styles.image}
+                                style={styles.option}
                                 imageStyle={styles.imageBackground}
                             >
-                                <BlurView intensity={100} style={styles.blurOverlay}>
-                                    <LinearGradient
-                                        colors={option.color}
-                                        style={styles.textContainer}
-                                        start={{ x: 0, y: 0 }}
-                                        end={{ x: 1, y: 0 }}
-                                    >
-                                        <MaterialIcons name={option.icon} size={30} color="white" style={styles.icon} />
+                                <LinearGradient
+                                    colors={['rgba(0,0,0,0.7)', 'rgba(0,0,0,0.4)', 'transparent']}
+                                    style={styles.gradientOverlay}
+                                >
+                                    <View style={styles.textContainer}>
+                                        <MaterialIcons name={option.icon} size={40} color="white" style={styles.icon} />
                                         <Text style={styles.optionText}>{option.title}</Text>
                                         <Text style={styles.descriptionText}>{option.description}</Text>
-                                    </LinearGradient>
-                                </BlurView>
+                                    </View>
+                                </LinearGradient>
                             </ImageBackground>
-                        </Animated.View>
-                    </TouchableOpacity>
+                        </TouchableOpacity>
+                    </Animated.View>
                 ))}
             </ScrollView>
         </LinearGradient>
@@ -137,66 +151,61 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     headerContainer: {
-        paddingTop: 40,
-        paddingHorizontal: 20,
+        paddingTop: 50,
         paddingBottom: 20,
-        backgroundColor: 'transparent',
+        paddingHorizontal: 20,
     },
     headerText: {
-        fontSize: 28,
-        fontWeight: '800',
+        fontSize: 32,
+        fontWeight: 'bold',
+        color: '#fff',
         textAlign: 'center',
-        color: '#2c3e50',
-        letterSpacing: 1,
+        letterSpacing: 1.2,
     },
     scrollContainer: {
         paddingHorizontal: 20,
-        paddingBottom: 40,
+        paddingBottom: 20,
     },
     option: {
-        height: 250,
-        width: '100%',
-        borderRadius: 20,
+        height: 200,
+        borderRadius: 25,
         overflow: 'hidden',
         marginBottom: 25,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.2,
-        shadowRadius: 10,
-        elevation: 8,
-    },
-    image: {
-        flex: 1,
         justifyContent: 'flex-end',
     },
     imageBackground: {
-        borderRadius: 20,
+        borderRadius: 25,
     },
-    blurOverlay: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
+    gradientOverlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
     },
     textContainer: {
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 0,
         alignItems: 'center',
     },
+    icon: {
+        marginBottom: 15,
+        textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 2,
+    },
     optionText: {
-        fontSize: 26,
+        fontSize: 28,
         fontWeight: 'bold',
-        color: 'white',
-        marginBottom: 5,
-        letterSpacing: 0.5,
+        color: '#fff',
+        marginBottom: 8,
+        textShadowColor: 'rgba(0, 0, 0, 0.6)',
+        textShadowOffset: { width: 2, height: 2 },
+        textShadowRadius: 4,
     },
     descriptionText: {
         fontSize: 16,
-        color: 'rgba(255,255,255,0.9)',
+        color: 'rgba(255, 255, 255, 0.9)',
         textAlign: 'center',
-    },
-    icon: {
-        marginBottom: 10,
+        textShadowColor: 'rgba(0, 0, 0, 0.6)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 2,
     },
 });
