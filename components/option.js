@@ -26,9 +26,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
+        backgroundColor: '#2c2c2c'
     },
     selectedOption: {
         borderWidth: 3,
+        backgroundColor: '#3b3b3bff'
     },
     correctOption: {
         backgroundColor: 'rgba(7, 162, 18, 0.3)'
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
     optionText: {
         fontSize: 20,
         fontWeight: 'semibold',
-        color: 'black',
+        color: 'white',
     }
 });
 
